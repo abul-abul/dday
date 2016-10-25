@@ -10,6 +10,7 @@
 	{!! HTML::style( asset('assets/admin/plugins/css/ace.onpage-help.css')) !!}
 	{!! HTML::style( asset('assets/admin/plugins/css/sunburst.css')) !!}
 
+
 <!-- /section:basics/sidebar -->
 			<div class="main-content">
 				<div class="main-content-inner">
@@ -26,7 +27,12 @@
 								Gallery
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									responsive photo gallery using colorbox
+									@if(count($images) == 0)
+										not gallery image
+									@else
+										responsive photo gallery using colorbox
+									@endif
+									
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -37,220 +43,51 @@
 								<div>
 									<ul class="ace-thumbnails clearfix">
 										<!-- #section:pages/gallery -->
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" title="Photo Title" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-											</a>
+										@foreach($images as $image)
 
-											<div class="tags">
-												<span class="label-holder">
-													<span class="label label-info">breakfast</span>
-												</span>
-
-												<span class="label-holder">
-													<span class="label label-danger">fruits</span>
-												</span>
-
-												<span class="label-holder">
-													<span class="label label-success">toast</span>
-												</span>
-
-												<span class="label-holder">
-													<span class="label label-warning arrowed-in">diet</span>
-												</span>
-											</div>
-
-											<div class="tools">
-												<a href="#">
-													<i class="ace-icon fa fa-link"></i>
+											<li>
+												<a href="/assets/admin/images/gallery_uploade/{{$image->image_name}}" title="Photo Title" data-rel="colorbox">
+													<img width="150" height="150" alt="150x150" src="/assets/admin/images/gallery_uploade/{{$image->image_name}}" />
 												</a>
 
-												<a href="#">
-													<i class="ace-icon fa fa-paperclip"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-pencil"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-times red"></i>
-												</a>
-											</div>
-										</li>
-
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-												<div class="text">
-													<div class="inner">Sample Caption on Hover</div>
-												</div>
-											</a>
-										</li>
-
-										<!-- /section:pages/gallery -->
-
-										<!-- #section:pages/gallery.caption -->
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-												<div class="text">
-													<div class="inner">Sample Caption on Hover</div>
-												</div>
-											</a>
-
-											<div class="tools tools-bottom">
-												<a href="#">
-													<i class="ace-icon fa fa-link"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-paperclip"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-pencil"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-times red"></i>
-												</a>
-											</div>
-										</li>
-
-										<!-- /section:pages/gallery.caption -->
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
 												<div class="tags">
-													
 													<span class="label-holder">
-														<span class="label label-info arrowed">fountain</span>
+														<span class="label label-info">breakfast</span>
 													</span>
 
 													<span class="label-holder">
-														<span class="label label-danger">recreation</span>
+														<span class="label label-danger">fruits</span>
 													</span>
 
+													<span class="label-holder">
+														<span class="label label-success">toast</span>
+													</span>
+
+													<span class="label-holder">
+														<span class="label label-warning arrowed-in">diet</span>
+													</span>
 												</div>
-											</a>
 
-											<div class="tools tools-top">
-												<a href="#">
-													<i class="ace-icon fa fa-link"></i>
-												</a>
+												<div class="tools">
+													<a href="#">
+														<i class="ace-icon fa fa-link"></i>
+													</a>
 
-												<a href="#">
-													<i class="ace-icon fa fa-paperclip"></i>
-												</a>
+													<a href="#">
+														<i class="ace-icon fa fa-paperclip"></i>
+													</a>
 
-												<a href="#">
-													<i class="ace-icon fa fa-pencil"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-times red"></i>
-												</a>
-											</div>
-										</li>
-
-										<li>
-											<div>
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-												<div class="text">
-													<div class="inner">
-														<span>Some Title!</span>
-
-														<br />
-														<a href="../assets/images/gallery/image-5.jpg" data-rel="colorbox">
-															<i class="ace-icon fa fa-search-plus"></i>
-														</a>
-
-														<a href="#">
-															<i class="ace-icon fa fa-user"></i>
-														</a>
-
-														<a href="#">
-															<i class="ace-icon fa fa-share"></i>
-														</a>
-													</div>
+													<a href="#">
+														<i data-toggle="modal" data-target="#myModal" data-id='{{$image->id}}' class="ace-icon fa fa-pencil galery_edit"></i>
+													</a>
+													<a  href="#">
+														<i data-id='{{$image->id}}' class="ace-icon fa fa-times red galery_delete"></i>
+													</a>
 												</div>
-											</div>
-										</li>
+											</li>
 
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-											</a>
-
-											<div class="tools tools-right">
-												<a href="#">
-													<i class="ace-icon fa fa-link"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-paperclip"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-pencil"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-times red"></i>
-												</a>
-											</div>
-										</li>
-
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-											</a>
-
-											<div class="tools">
-												<a href="#">
-													<i class="ace-icon fa fa-link"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-paperclip"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-pencil"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-times red"></i>
-												</a>
-											</div>
-										</li>
-
-										<li>
-											<a href="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" data-rel="colorbox">
-												<img width="150" height="150" alt="150x150" src="/assets/admin/images/article_uploade/3otj8PP4YpRH.jpg" />
-											</a>
-
-											<div class="tools tools-top in">
-												<a href="#">
-													<i class="ace-icon fa fa-link"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-paperclip"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-pencil"></i>
-												</a>
-
-												<a href="#">
-													<i class="ace-icon fa fa-times red"></i>
-												</a>
-											</div>
-
-			
-										</li>
+										@endforeach
+									
 									</ul>
 								</div><!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
@@ -259,6 +96,25 @@
 				</div>
 			</div><!-- /.main-content -->
 
+
+			<div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        
+			        <div class="modal-body">
+			        	<input content="{{ csrf_token() }}" type="file" style="display:none" class="gallery_image_modal_edit"> 
+			            <img style="width:100%;cursor:pointer" src="" class="gallery_image_modal">
+			            <img class="img_loading" style="display: none;position: absolute;top: 41%;left: 41%;" src="/assets/admin/images/ajax-loader.gif">
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+ 			</div>
 @endsection
 
 
@@ -299,6 +155,7 @@
 	    });
 	})
 
+	
 </script>
 @endsection
 
@@ -312,4 +169,5 @@
 	{!! HTML::script( asset('assets/admin/plugins/js/language/html.js') ) !!} 
 	{!! HTML::script( asset('assets/admin/plugins/js/language/css.js') ) !!} 
 	{!! HTML::script( asset('assets/admin/plugins/js/language/javascript.js') ) !!} 
+
 @endsection

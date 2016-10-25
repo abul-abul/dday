@@ -35,5 +35,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Contracts\YoutubeInerface',
             'App\Services\YoutubeService'
         );
+        $this->app->bind(
+            'App\Contracts\GalleryInterface',
+            'App\Services\GalleryService'
+        );
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Requests\admin\ArticleRequest;
 use App\Contracts\ArticleInterface;
 use App\Contracts\UserInterface;
 use App\Contracts\YoutubeInerface;
+use App\Contracts\GalleryInterface;
 
 use View;
 use Session;
@@ -286,9 +287,80 @@ class AdminController extends BaseController
     /**
      * 
      */
-    public function getGallery()
+    public function getGallery(GalleryInterface $galleryRepo)
     {
-        return view('admin.gallery.gallery');
+        $result = $galleryRepo->getAll();
+        $data = [
+          'images' => $result
+        ];
+        return view('admin.gallery.gallery',$data);
+    }
+
+    /**
+     * 
+     */
+    public function getAddGallery()
+    {
+       return view('admin.gallery.add-gallery');
+    }
+
+    /**
+     * 
+     */
+    public function postAddGallery(request $request,GalleryInterface $galleryRepo)
+    {
+        $result = $request->all();
+        $validator = Validator::make($result, [
+            'image_name' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }else{
+            foreach ($result['image_name'] as $key => $image) {
+                $logoFile = $image->getClientOriginalExtension();
+                $name = str_random(12);
+                $path = public_path() . '/assets/admin/images/gallery_uploade';
+                $result_move = $image->move($path, $name.'.'.$logoFile);
+                $article_images = $name.'.'.$logoFile;
+                $data['image_name'] = $article_images;
+                $galleryRepo->createGallery($data);
+            }
+            return redirect()->action('AdminController@getGallery');
+        }
+    }
+
+    /**
+     * 
+     */
+    public function getDeleteGallery($id,GalleryInterface $galleryRepo)
+    {
+        $result = $galleryRepo->getOne($id);
+        $imgname = $result->image_name;
+        $path = public_path() . '/assets/admin/images/gallery_uploade/' . $imgname;
+        File::delete($path);
+        $galleryRepo->deleteGallery($id);
+        return response()->json();
+    }
+
+    /**
+     * 
+     */
+    public function posteditGalleryImages(request $request,GalleryInterface $galleryRepo)
+    {
+        $result = $request->all();
+        //dd($result['file']);
+        $id = $result['id'];
+        $row = $galleryRepo->getOne($id);
+        $oldPath = public_path() . '/assets/admin/images/gallery_uploade/' . $row['image_name'];
+        File::delete($oldPath);
+        $logoFile = $result['file']->getClientOriginalExtension();
+        $name = str_random(12);
+        $path = public_path() . '/assets/admin/images/gallery_uploade';
+        $result_move = $result['file']->move($path, $name.'.'.$logoFile);
+        $gallery_images = $name.'.'.$logoFile;
+        $data['image_name'] = $gallery_images;
+        $galleryRepo->updateImagesGallery($id,$data);
+        return response()->json($gallery_images);
     }
 
 }

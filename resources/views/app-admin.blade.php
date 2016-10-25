@@ -362,12 +362,34 @@
 
 
 					<li class="">
-						<a href="{{action('AdminController@getGallery')}}">
+						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-picture-o"></i>
-							<span class="menu-text"> Gallery </span>
+							<span class="menu-text">
+								Gallery
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
 						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="{{action('AdminController@getGallery')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Gallery List
+								</a>
+							</li>
+							<li class="">
+								<a href="{{action('AdminController@getAddGallery')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Add Gallery
+								</a>
+								<b class="arrow"></b>
+							</li>
+							
+						</ul>
+						
 					</li>
 
 
@@ -512,6 +534,7 @@
 
 	@yield('script')
 
+	{!! HTML::script(asset('assets/admin/js/main.js') ) !!} 
 
 
 </body>

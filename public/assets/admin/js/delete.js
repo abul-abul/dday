@@ -4,4 +4,5 @@ $(document).ready(function(){
 		$('.del_yes').attr('href',href);
 	})
 
+
 })

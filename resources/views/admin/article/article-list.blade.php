@@ -9,6 +9,7 @@
 @if(count($articles) == 0)
 	<h1>Not articles</h1>
 @else
+
 <h1>Article List</h1>
 <div class="row">
 	<div class="col-xs-12">
