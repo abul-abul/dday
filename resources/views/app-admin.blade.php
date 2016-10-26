@@ -9,8 +9,6 @@
 	{!! HTML::style( asset('assets/admin/plugins/css/ace.css')) !!}
 
 
-
-
 </head>
 <body  class="no-skin">
 
@@ -318,6 +316,69 @@
 
 					<li class="">
 						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-folder-open-o"></i>
+							<span class="menu-text">
+								Pages
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Add pages
+								</a>
+							</li>
+
+							<li class="">
+								<a href="{{action('AdminController@getAddArticle')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Page List
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							
+						</ul>
+					</li>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-language"></i>
+							<span class="menu-text">
+								Languages
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Add languages
+								</a>
+							</li>
+
+							<li class="">
+								<a href="{{action('AdminController@getAddArticle')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									languages List
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-file-text-o"></i>
 							<span class="menu-text">
 								Articles
@@ -347,19 +408,6 @@
 							
 						</ul>
 					</li>
-
-					
-
-					<li class="">
-						<a href="{{action('AdminController@getYoutube')}}">
-							<i class="menu-icon fa fa-youtube-play"></i>
-							<span class="menu-text"> youtube </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-
 
 					<li class="">
 						<a href="#" class="dropdown-toggle">
@@ -392,6 +440,13 @@
 						
 					</li>
 
+					<li class="">
+						<a href="{{action('AdminController@getYoutube')}}">
+							<i class="menu-icon fa fa-youtube-play"></i>
+							<span class="menu-text"> youtube </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
 
 				</ul><!-- /.nav-list -->
 

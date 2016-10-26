@@ -18,7 +18,9 @@ class CreateYoutubeTable extends Migration
             $table->string('video')->nullable();
             $table->string('width')->nullable();
             $table->string('height')->nullable();
-            $table->string('article_id')->nullable();
+            $table->string('autoplay')->nullable();
+            $table->string('info')->nullable();
+            $table->string('panel')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateYoutubeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article');
+        Schema::drop('youtube');
     }
 }

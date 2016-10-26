@@ -36,8 +36,3 @@
 
 @endsection
 
-
-
-@section('script')
-	{!! HTML::script( asset('assets/admin/js/main.js') ) !!} 
-@endsection

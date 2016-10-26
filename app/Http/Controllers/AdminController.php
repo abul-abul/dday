@@ -35,7 +35,7 @@ class AdminController extends BaseController
 
     /**
      * Admin Login
-     * get /ab-admin/logout
+     * get /ab-admin
      *
      * @param
      * @return view
@@ -60,7 +60,7 @@ class AdminController extends BaseController
 
     /**
       * Admin Logout
-      * GET /admin/logout
+      * GET /admin/login-out
       *
       * @param 
       * @return redirect
@@ -73,7 +73,7 @@ class AdminController extends BaseController
 
     /**
      * Admin Login
-     * post /ab-admin/logout
+     * post /ab-admin/login
      *
      * @param AdminLoginRequest $request
      * @return redirect
@@ -83,9 +83,9 @@ class AdminController extends BaseController
     	$email = $request->get('email');
     	$password  = $request->get('password');
     	
-    	if ($request->input('remember_me')) {
-    		$response = Cookie::forever('remember',Auth::user());
-    	}
+    	// if ($request->input('remember_me')) {
+    	// 	$response = Cookie::forever('remember',Auth::user());
+    	// }
 
     	if(Auth::attempt ([
             'email'=>$email,
@@ -107,6 +107,7 @@ class AdminController extends BaseController
 
     /**
      * Get dashboard page
+     * Get ab-admin/dashboard
      *
      * @param 
      * @return view
@@ -129,7 +130,11 @@ class AdminController extends BaseController
     }
 
     /**
-     * 
+     * Get Add Article
+     * Get ab-admin/article
+     *
+     * @param 
+     * @return view
      */
     public function getAddArticle()
     {
@@ -137,7 +142,12 @@ class AdminController extends BaseController
     }
 
     /**
+     * POST Add Article
+     * POST ab-admin/article-add
      * 
+     * @param ArticleRequest $request
+     * @param ArticleRequest $articleRepo
+     * @return redirect
      */
     public function postAddArticle(ArticleRequest $request,ArticleInterface $articleRepo)
     {
@@ -158,7 +168,11 @@ class AdminController extends BaseController
     }
 
     /**
-     * 
+     * POST Add article image
+     * POST ab-admin/article-uploade
+     *
+     * @param request $request
+     * @return response
      */
     public function postUploadeArticleAjax(request $request)
     {
@@ -172,7 +186,11 @@ class AdminController extends BaseController
     }
 
     /**
+     * GET Article List
+     * GET ab-admin/article-list
      * 
+     * @param ArticleInterface $articleRepo
+     * @return view
      */
     public function getArticleList(ArticleInterface $articleRepo)
     {
@@ -184,7 +202,12 @@ class AdminController extends BaseController
     }
     
     /**
-     * 
+     * GET delete article
+     * GET ab-admin/article-delete/{id}
+     *
+     * @param $id
+     * @param ArticleInterface $articleRepo
+     * @return redirect
      */
     public function getDeleteArticle($id,ArticleInterface $articleRepo)
     {
@@ -196,7 +219,12 @@ class AdminController extends BaseController
     }
 
     /**
+     * GET edit article
+     * GET ab-admin/article-edit/{id}
      * 
+     * @param $id
+     * @param ArticleInterface $articleRepo
+     * @return view
      */
     public function getEditArticle($id,ArticleInterface $articleRepo)
     {
@@ -208,7 +236,12 @@ class AdminController extends BaseController
     }
 
     /**
+     * POST update article
+     * POST ab-admin/article-update
      * 
+     * @param request $request
+     * @param ArticleInterface $articleRepo
+     * @return redirect
      */
     public function postUpdateArticle(request $request,ArticleInterface $articleRepo)
     {
@@ -232,7 +265,11 @@ class AdminController extends BaseController
     }
 
     /**
-     * 
+     * GET Youtube
+     * GET ab-admin/youtube
+     *
+     * @param YoutubeInerface $youtbeRepo
+     * @return view
      */
     public function getYoutube(YoutubeInerface $youtbeRepo)
     {
@@ -244,7 +281,12 @@ class AdminController extends BaseController
     }
 
     /**
-     * 
+     * POST add youtube video
+     * POST ab-admin/add-youtube
+     *
+     * @param request $request
+     * @param YoutubeInerface $youtbeRepo
+     * @return redirect
      */
     public function postAddYoutbeVideo(request $request,YoutubeInerface $youtbeRepo)
     {
@@ -264,7 +306,12 @@ class AdminController extends BaseController
     }
 
     /**
+     * GET delete youtube video
+     * GET ab-admin/youtube/{id}
      * 
+     * @param $id
+     * @param YoutubeInerface $youtbeRepo
+     * @return redirect
      */
     public function getDeleteYoutube($id,YoutubeInerface $youtbeRepo)
     {
@@ -273,7 +320,12 @@ class AdminController extends BaseController
     }
 
     /**
-     * 
+     * GET edit youtube video
+     * GET ab-admin/youtube-edit/{id}
+     *
+     * @param $id
+     * @param YoutubeInerface $youtbeRepo
+     * @return view
      */
     public function getEditYoutubeVideo($id,YoutubeInerface $youtbeRepo)
     {
@@ -285,7 +337,11 @@ class AdminController extends BaseController
     }
 
     /**
+     * GET Gallery
+     * GET ab-admin/gallery-list
      * 
+     * @param GalleryInterface $galleryRepo
+     * @return view
      */
     public function getGallery(GalleryInterface $galleryRepo)
     {
@@ -297,7 +353,11 @@ class AdminController extends BaseController
     }
 
     /**
+     * GET Add Gallery page
+     * GET ab-admin/add-gallery
      * 
+     * @param 
+     * @return view
      */
     public function getAddGallery()
     {
@@ -305,7 +365,12 @@ class AdminController extends BaseController
     }
 
     /**
+     * POST Add Gallery
+     * POST ab-admin/add-gallery
      * 
+     * @param request $request
+     * @param GalleryInterface $galleryRepo
+     * @return redirect
      */
     public function postAddGallery(request $request,GalleryInterface $galleryRepo)
     {
@@ -330,7 +395,12 @@ class AdminController extends BaseController
     }
 
     /**
+     * GET Delete gallery
+     * GET ab-admin/delete-gallery/{id}
      * 
+     * @param $id
+     * @param GalleryInterface $galleryRepo
+     * @return response
      */
     public function getDeleteGallery($id,GalleryInterface $galleryRepo)
     {
@@ -343,12 +413,16 @@ class AdminController extends BaseController
     }
 
     /**
+     * POST edit gallery images
+     * POST ab-admin/gallery-image-edit
      * 
+     * @param request $request
+     * @param GalleryInterface $galleryRepo
+     * @return response
      */
     public function posteditGalleryImages(request $request,GalleryInterface $galleryRepo)
     {
         $result = $request->all();
-        //dd($result['file']);
         $id = $result['id'];
         $row = $galleryRepo->getOne($id);
         $oldPath = public_path() . '/assets/admin/images/gallery_uploade/' . $row['image_name'];
@@ -361,6 +435,74 @@ class AdminController extends BaseController
         $data['image_name'] = $gallery_images;
         $galleryRepo->updateImagesGallery($id,$data);
         return response()->json($gallery_images);
+    }
+
+    /**
+     * POST yutube parametrs on of
+     * POST ab-admin/youtube-autoplay
+     * 
+     * @param request $request
+     * @param YoutubeInerface $youtbeRepo
+     * @return redirect
+     */
+    public function postAutoplay(request $request,YoutubeInerface $youtbeRepo)
+    {
+        $result = $request->all();
+        $id = $result['id'];
+
+        if(isset($result['width']) || isset($result['height'])){
+            $data4 = [
+                'width' => $result['width'],
+                'height' => $result['height']
+            ];
+            dd($data4);
+            $youtbeRepo->getUpdateYoutube($result['id'],$result);
+            return redirect()->back();
+        }
+
+        if(isset($result['autoplay'])){
+            if($result['autoplay'] == 1){
+                $data1 = [
+                    'autoplay' => '1',
+                ];
+            }else{
+                $data1 = [
+                    'autoplay' => '0',
+                ];
+            }
+            $youtbeRepo->getUpdateYoutube($id,$data1);
+        }
+
+        if(isset($result['info'])){
+            if($result['info'] == 1){
+                $data2 = [
+                    'info' => '1',
+                ];
+            }else{
+                $data2 = [
+                    'info' => '0',
+                ];
+            }
+            $youtbeRepo->getUpdateYoutube($id,$data2);
+        }
+
+        if(isset($result['panel'])) {
+             if($result['panel'] == 1){
+                $data2 = [
+                    'panel' => '1',
+                ];
+            }else{
+                $data2 = [
+                    'panel' => '0',
+                ];
+            }
+            $youtbeRepo->getUpdateYoutube($id,$data2);
+        }        
+        $data = [
+            'video' => $result['video']
+        ];
+        $youtbeRepo->getUpdateYoutube($id,$data);
+        return response()->json($data);
     }
 
 }

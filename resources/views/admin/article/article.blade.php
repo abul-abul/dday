@@ -16,7 +16,7 @@
   {!! HTML::script( asset('assets/admin/plugins/js/ace/elements.wysiwyg.js') ) !!} 
   {!! HTML::script( asset('assets/admin/plugins/js/ace/elements.colorpicker.js') ) !!}
   {!! HTML::script( asset('assets/admin/plugins/js/plugins-main.js') ) !!}
-  {!! HTML::script( asset('assets/admin/js/main.js') ) !!}
+
 
   
 
@@ -200,8 +200,7 @@
         </div> --}}
       </div>
       <div class="modal-footer">
-        
-        <button type="button" class="btn btn-primary save_images_article">Save changes</button>
+        	<button type="button" class="btn btn-primary save_images_article">Save changes</button>
       </div>
     </div>
   </div>

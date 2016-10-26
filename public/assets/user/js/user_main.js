@@ -1,84 +1,121 @@
 $(document).ready(function(){
-	window.old_url = [];
-	window.finish_url = [];
-	window.url = [];
-	$('.youtube_autoplay').click(function(){
 
+
+	$('.youtube_autoplay').click(function(){
 		var check = $(this).attr('checked');
-		old_url.push($('.edit_youtube').attr('src'))
-		var edit_youtube = $('.edit_youtube').attr('src')
-	
+		var token = $(this).attr('content');
+		var id = $('.video_url').val();
+		var url = $('.edit_youtube').attr('src');
+		var auto = $(this).attr('data-src');
 
 		if (check){
-			$(this).removeAttr('checked');
-			$('.edit_youtube').attr('src',old_url[0])
-			finish_url = finish_url.filter(function(elem){
-	            return elem != '?autoplay=1';
+			$(this).attr('checked',false);
+			var autoplay_string = '?autoplay=1';
+			var final_url = url.replace('?autoplay=1','');
+			var numb = '0';
+
+			$.ajax({
+	            url: '/ab-admin/youtube-autoplay',
+	            type: 'post',
+				data:{_token:token,video:final_url,id:id,autoplay:numb},
+	            success: function(data)
+	            {   
+	            	$('.edit_youtube').attr('src',data.video) 
+	            }
 	        });
-			//$('.video_url').val(old_url[0]);
 		}else{
 			$(this).attr('checked','checked');
-			var split = edit_youtube.split('?');
-			var src = split[0] + '?autoplay=1';
-			$('.edit_youtube').attr('src',src);
-			//$('.video_url').val(src);
-			finish_url.push('?autoplay=1');
+			var final_url = url+auto;
+			var numb = '1';
+
+			$.ajax({
+	            url: '/ab-admin/youtube-autoplay',
+	            type: 'post',
+				data:{_token:token,video:final_url,id:id,autoplay:numb},
+	            success: function(data)
+	            {   
+	            	$('.edit_youtube').attr('src',data.video) 
+	            }
+	        });
 		}
-		console.log(src)
-		//console.log(finish_url)
-		
 	})
 
 	$('.show_info').click(function(){
 		var check = $(this).attr('checked');
-		old_url.push($('.edit_youtube').attr('src'))
-		var edit_youtube = $('.edit_youtube').attr('src')
-		
+		var token = $(this).attr('content');
+		var id = $('.video_url').val();
+		var url = $('.edit_youtube').attr('src');
+		var auto = $(this).attr('data-src');
 
-		if (check){
-			$(this).removeAttr('checked');
-			$('.edit_youtube').attr('src',old_url[0])
-			finish_url = finish_url.filter(function(elem){
-	            return elem != '?&showinfo=0&';
+		if (check) {
+			$(this).attr('checked',false);
+			var autoplay_string = '?&showinfo=0&';
+			var final_url = url.replace('?&showinfo=0&','');
+			var numb = '0';
+
+			$.ajax({
+	            url: '/ab-admin/youtube-autoplay',
+	            type: 'post',
+				data:{_token:token,video:final_url,id:id,info:numb},
+	            success: function(data)
+	            {   
+	            	$('.edit_youtube').attr('src',data.video) 
+	            }
 	        });
-			//$('.video_url').val(old_url[0]);
 		}else{
 			$(this).attr('checked','checked');
-			var split = edit_youtube.split('?');
-			var src = split[0] + '?&showinfo=0&';
-			$('.edit_youtube').attr('src',src);
-			finish_url.push('?&showinfo=0&')
+			var final_url = url+auto;
+			var numb = '1';
 
-			//$('.video_url').val(src);
+			$.ajax({
+	            url: '/ab-admin/youtube-autoplay',
+	            type: 'post',
+				data:{_token:token,video:final_url,id:id,info:numb},
+	            success: function(data)
+	            {   
+	            	$('.edit_youtube').attr('src',data.video) 
+	            }
+	        });
 		}
-		console.log(src)
-		//console.log(finish_url)
 	})
 
 	$('.show_panel').click(function(){
 		var check = $(this).attr('checked');
-		old_url.push($('.edit_youtube').attr('src'))
-		var edit_youtube = $('.edit_youtube').attr('src')
-		
-		if (check){
-			$(this).removeAttr('checked');
-			$('.edit_youtube').attr('src',old_url[0])
-			finish_url = finish_url.filter(function(elem){
-	            return elem != '?&controls=0&';
+		var token = $(this).attr('content');
+		var id = $('.video_url').val();
+		var url = $('.edit_youtube').attr('src');
+		var auto = $(this).attr('data-src');
+
+		if (check) {
+			$(this).attr('checked',false);
+			var numb = '0';
+
+			var autoplay_string = '?&controls=0&';
+			var final_url = url.replace('?&controls=0&','')
+			$.ajax({
+	            url: '/ab-admin/youtube-autoplay',
+	            type: 'post',
+				data:{_token:token,video:final_url,id:id,panel:numb},
+	            success: function(data)
+	            {   
+	            	$('.edit_youtube').attr('src',data.video) 
+	            }
 	        });
-			//$('.video_url').val(old_url[0]);
 		}else{
 			$(this).attr('checked','checked');
-			var split = edit_youtube.split('?');
-			var src = split[0] + '?&controls=0&';
-			$('.edit_youtube').attr('src',src);
-			finish_url.push('?&controls=0&')
+			var final_url = url+auto;
+			var numb = '1';
 
-			//$('.video_url').val(src);
-		}
-		console.log(src)
-
-		//console.log(finish_url)
+			$.ajax({
+	            url: '/ab-admin/youtube-autoplay',
+	            type: 'post',
+				data:{_token:token,video:final_url,id:id,panel:numb},
+	            success: function(data)
+	            {   
+	            	$('.edit_youtube').attr('src',data.video) 
+	            }
+	        });
+		}	
 	})
 
 

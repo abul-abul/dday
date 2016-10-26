@@ -22,7 +22,7 @@
 	}
 </style>
 
-<h1>Add Gallery Images</h1>
+	<h1>Add Gallery Images</h1>
 
 	@include('message')
 	{!! Form::open(['action' => ['AdminController@postAddGallery'] ,'class' => 'form-horizontal','files' =>true  ]) !!}
@@ -41,6 +41,10 @@
         </button>
 
 	{!! Form::close() !!} 
+
+
+
+
 
 @endsection
 

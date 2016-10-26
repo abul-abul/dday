@@ -42,11 +42,10 @@ Route::get('user/google-callback','UsersController@getGoogleCallback');
 Route::get('ab-admin','AdminController@getLogin');
 Route::post('ab-admin/login','AdminController@postLogin');
 Route::get('ab-admin/dashboard','AdminController@getDashboard');
-Route::get('ab-admin/login','AdminController@getLogout');
+Route::get('ab-admin/login-out','AdminController@getLogout');
 
 
 //================Article
-Route::get('ab-admin/log-out','AdminController@getAddArticle');
 Route::get('ab-admin/article','AdminController@getAddArticle');
 Route::get('ab-admin/article-list','AdminController@getArticleList');
 Route::post('ab-admin/article-add','AdminController@postAddArticle');
@@ -60,7 +59,9 @@ Route::post('ab-admin/add-youtube/','AdminController@postAddYoutbeVideo');
 
 Route::get('ab-admin/youtube','AdminController@getYoutube'); 
 Route::get('ab-admin/youtube/{id}','AdminController@getDeleteYoutube'); 
-Route::get('ab-admin/youtube-edit/{id}','AdminController@getEditYoutubeVideo'); 
+Route::get('ab-admin/youtube-edit/{id}','AdminController@getEditYoutubeVideo');
+Route::post('ab-admin/youtube-autoplay','AdminController@postAutoplay'); 
+
 Route::get('ab-admin/gallery-list','AdminController@getGallery'); 
 Route::get('ab-admin/add-gallery','AdminController@getAddGallery'); 
 Route::post('ab-admin/add-gallery','AdminController@postAddGallery'); 

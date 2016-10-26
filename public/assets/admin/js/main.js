@@ -2,16 +2,16 @@ $(document).ready(function(){
 	//article
 	$(window).load(function(){
 		$('.wysiwyg-choose-file').next().remove();
-	})
+	});
+
 	$('.save_article').click(function(){
 		var editor = $('#editor1').html();
-
 		var text = $('.editor_article').val(editor);
-	})
+	});
 
 	$('.uploade_article_images').click(function(){
 		$('.article_image').trigger('click');		
-	})
+	});
 
 	$('.article_image').change(function(event){
 		files = event.target.files;
