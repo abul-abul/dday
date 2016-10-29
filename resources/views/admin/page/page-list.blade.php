@@ -48,13 +48,6 @@
 <script type="text/javascript">
 			
 			
-			// console.log(json_array)
-// 			var jsonStr = '{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"}]}';
-
-// var obj = JSON.parse(jsonStr);
-// obj['theTeam'].push({"teamId":"4","status":"pending"});
-// jsonStr = JSON.stringify(obj);
-// 			 console.log(obj)
 				
 			var grid_data = 
 			[ 
@@ -65,19 +58,15 @@
 			var x = $('.a').html();
 			var json = jQuery.parseJSON(x);
 			//json_array.push(json);
-			var q = []
+
 			$.each(grid_data, function(i,value){
 				$.each(json, function (key, data) {
-				 	//console.log(data)
 				 	value.name = data.page_name;
 				 	value.id = data.id;
 				 	value.sdate = data.created_at;
-				 	//grid_data.push(value);
+				    var clonedobj = jQuery.extend({}, value);
+				    grid_data.push(clonedobj);
 				 })
-				 
-				//grid_data.push(data)
-				//grid_data[sdate].push(data.page_name)
-				//console.log(data)
 			})
 			//console.log(grid_data)
 
