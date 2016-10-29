@@ -11,7 +11,8 @@ use App\Contracts\ArticleInterface;
 use App\Contracts\UserInterface;
 use App\Contracts\YoutubeInerface;
 use App\Contracts\GalleryInterface;
-
+use App\Contracts\PageInterface;
+use App\Contracts\SubMenuInterface;
 use View;
 use Session;
 use Validator;
@@ -503,6 +504,73 @@ class AdminController extends BaseController
         ];
         $youtbeRepo->getUpdateYoutube($id,$data);
         return response()->json($data);
+    }
+
+    /**
+     * 
+     */
+    public function getAddPage()
+    {
+        return view('admin.page.add-page');
+    }
+
+    /**
+     * 
+     */
+    public function getPageList(PageInterface $pageRepo)
+    {
+        $result = $pageRepo->selectMenuSubmenu();
+        $param = $pageRepo->getAll();
+        $json = json_encode($pageRepo->getAll());
+        $data = [
+            'pages' => $json
+        ];
+        return view('admin.page.page-list',$data);
+    }
+
+    /**
+     * 
+     */
+    public function postAddPage(request $request,PageInterface $pageRepo)
+    {
+        $result = $request->all();
+        $validator = Validator::make($result, [
+            'page_name' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }else{
+            unset($request['_token']);
+            $pageRepo->createPage($result);
+        }
+        return redirect()->action('AdminController@getPageList');
+    }
+
+    /**
+     * 
+     */
+    public function getSubMenu(PageInterface $pageRepo)
+    {
+        $result = $pageRepo->getAll();
+        $data = [
+            'pages' => $result
+        ];
+        return view('admin.page.sub-menu',$data);
+    }
+
+    /**
+     * 
+     */
+    public function postAddSubmenu(request $request,SubMenuInterface $submenuRepo,PageInterface $pageRepo)
+    {
+        $result = $request->all();
+        $data = [
+            'sub_menu' => $result['sub_menu']
+        ];
+        $sub = $submenuRepo->createPage($data);
+        $pageObj = $pageRepo->getOne($result['page_name']);
+        $pageObj->menuSubMenu()->attach($sub->id);
+        return redirect()->back()->with('error','You add Sub menu');
     }
 
 }

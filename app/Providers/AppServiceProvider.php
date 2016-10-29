@@ -39,5 +39,13 @@ class AppServiceProvider extends ServiceProvider
             'App\Contracts\GalleryInterface',
             'App\Services\GalleryService'
         );
+        $this->app->bind(
+            'App\Contracts\PageInterface',
+            'App\Services\PageService'
+        );
+        $this->app->bind(
+            'App\Contracts\SubMenuInterface',
+            'App\Services\SubMenuService'
+        );
     }
 }

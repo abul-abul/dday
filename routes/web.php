@@ -67,3 +67,9 @@ Route::get('ab-admin/add-gallery','AdminController@getAddGallery');
 Route::post('ab-admin/add-gallery','AdminController@postAddGallery'); 
 Route::get('ab-admin/delete-gallery/{id}','AdminController@getDeleteGallery'); 
 Route::post('ab-admin/gallery-image-edit','AdminController@posteditGalleryImages'); 
+
+Route::get('ab-admin/add-page','AdminController@getAddPage'); 
+Route::get('ab-admin/page-list','AdminController@getPageList'); 
+Route::post('ab-admin/add-page','AdminController@postAddPage'); 
+Route::get('ab-admin/add-submenu','AdminController@getSubMenu'); 
+Route::post('ab-admin/add-submenu','AdminController@postAddSubmenu');

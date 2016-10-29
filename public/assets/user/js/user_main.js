@@ -7,9 +7,10 @@ $(document).ready(function(){
 		var id = $('.video_url').val();
 		var url = $('.edit_youtube').attr('src');
 		var auto = $(this).attr('data-src');
-
+		
 		if (check){
 			$(this).attr('checked',false);
+
 			var autoplay_string = '?autoplay=1';
 			var final_url = url.replace('?autoplay=1','');
 			var numb = '0';
@@ -20,11 +21,12 @@ $(document).ready(function(){
 				data:{_token:token,video:final_url,id:id,autoplay:numb},
 	            success: function(data)
 	            {   
-	            	$('.edit_youtube').attr('src',data.video) 
+	            	$('.edit_youtube').attr('src',data.video);
 	            }
 	        });
 		}else{
 			$(this).attr('checked','checked');
+			$(this).attr('disabled', true)
 			var final_url = url+auto;
 			var numb = '1';
 
@@ -34,7 +36,7 @@ $(document).ready(function(){
 				data:{_token:token,video:final_url,id:id,autoplay:numb},
 	            success: function(data)
 	            {   
-	            	$('.edit_youtube').attr('src',data.video) 
+	            	$('.edit_youtube').attr('src',data.video);
 	            }
 	        });
 		}
