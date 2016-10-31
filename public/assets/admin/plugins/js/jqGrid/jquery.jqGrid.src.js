@@ -8790,6 +8790,7 @@ $.jgrid.extend({
 						}
 						postd[idname] = postdata.join();
 						$(this).addClass('ui-state-active');
+						var token = $('.token').val()
 						var ajaxOptions = $.extend({
 							url: rp_ge[$t.p.id].url || $($t).jqGrid('getGridParam','editurl'),
 							type: rp_ge[$t.p.id].mtype,

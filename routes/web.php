@@ -73,3 +73,10 @@ Route::get('ab-admin/page-list','AdminController@getPageList');
 Route::post('ab-admin/add-page','AdminController@postAddPage'); 
 Route::get('ab-admin/add-submenu','AdminController@getSubMenu'); 
 Route::post('ab-admin/add-submenu','AdminController@postAddSubmenu');
+Route::post('ab-admin/jgrid','AdminController@postJgrid');
+
+Route::get('ab-admin/language','AdminController@getLanguage');
+Route::post('ab-admin/add-language','AdminController@postAddLanguage');
+Route::get('ab-admin/language-list','AdminController@getLanguageList');
+Route::get('ab-admin/language-delete/{id}','AdminController@getDeleteLanguage');
+

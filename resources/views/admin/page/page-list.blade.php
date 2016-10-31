@@ -12,7 +12,9 @@
 	{!! HTML::style( asset('assets/admin/plugins/css/ace.css')) !!}
 
 
+<style type="text/css">
 
+</style>
 
 
 	<!-- /section:basics/sidebar -->
@@ -29,6 +31,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								
+								<input class="token" type="hidden" value="{{ csrf_token() }}">
 								<table id="grid-table"></table>
 
 								<div id="grid-pager"></div>
@@ -46,15 +49,14 @@
 @section('script')
 
 <script type="text/javascript">
-			
-			
-				
+			var token = $('.token').val();
+
+
 			var grid_data = 
 			[ 
 				{id:"",name:"",note:"",stock:"",ship:"", sdate:""},
 			];
 			
-
 			var x = $('.a').html();
 			var json = jQuery.parseJSON(x);
 			//json_array.push(json);
@@ -68,22 +70,18 @@
 				    grid_data.push(clonedobj);
 				 })
 			})
-			//console.log(grid_data)
 
-			
-			
-			
-				
+	
 			var subgrid_data = 
 			[
-				{id:"1", name:"sub grid item 1", qty: 11},
-				{id:"2", name:"sub grid item 2", qty: 3},
-				{id:"3", name:"sub grid item 3", qty: 12},
+				{id:"1", name:"sub grid item 1", qty: 5},
+				{id:"2", name:"sub grid item 2", qty: 2},
+				{id:"3", name:"sub grid item 3", qty: 5},
 				{id:"4", name:"sub grid item 4", qty: 5},
 				{id:"5", name:"sub grid item 5", qty: 2},
-				{id:"6", name:"sub grid item 6", qty: 9},
-				{id:"7", name:"sub grid item 7", qty: 3},
-				{id:"8", name:"sub grid item 8", qty: 8}
+				{id:"6", name:"sub grid item 6", qty: 2},
+				{id:"7", name:"sub grid item 7", qty: 5},
+				{id:"8", name:"sub grid item 8", qty: 5}
 			];
 			
 			jQuery(function($) {
@@ -92,7 +90,7 @@
 				
 				//resize to fit page size
 				$(window).on('resize.jqGrid', function () {
-					$(grid_selector).jqGrid( 'setGridWidth', $(".page-content").width() );
+					$(grid_selector).jqGrid('setGridWidth', $(".page-content").width() );
 			    })
 				//resize on sidebar collapse/expand
 				var parent_column = $(grid_selector).closest('[class*="col-"]');
@@ -120,6 +118,7 @@
 					//for this example we are using local data
 					subGridRowExpanded: function (subgridDivId, rowId) {
 						var subgridTableId = subgridDivId + "_t";
+						console.log(rowId)
 						//console.log(subgridTableId)
 						$("#" + subgridDivId).html("<table id='" + subgridTableId + "'></table>");
 						$("#" + subgridTableId).jqGrid({
@@ -146,7 +145,6 @@
 							formatoptions:{ 
 								keys:true,
 								//delbutton: false,//disable delete button
-								
 								delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
 								//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 							}
@@ -174,14 +172,13 @@
 						var table = this;
 						setTimeout(function(){
 							styleCheckbox(table);
-							
 							updateActionIcons(table);
 							updatePagerIcons(table);
 							enableTooltips(table);
 						}, 0);
 					},
-			
-					editurl: "/dummy.html",//nothing is saved
+					
+					editurl: "/ab-admin/jgrid/",//nothing is saved
 					caption: "Pages with inline editing"
 			
 					//,autowidth: true,

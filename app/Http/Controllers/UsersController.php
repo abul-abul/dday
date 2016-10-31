@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\user\UserRequest;
 
 use App\Contracts\UserInterface;
+use App\Contracts\LanguageInterface;
 
 use App\Http\Requests;
 use Validator;
@@ -16,15 +17,18 @@ use Socialite;
 class UsersController extends BaseController
 {
 
+
     /**
      * Create a new instance of BaseController class.
      *
      * @return void
      */
-	public function __construct()
+	public function __construct(LanguageInterface $langRepo)
     {
-        //parent::__construct();
+        parent::__construct($langRepo);
         // $this->middleware('auth', ['except' => ['getLogin', 'postLogin','getLogout']]);
+        $this->middleware('language');
+
     }
 
     /**

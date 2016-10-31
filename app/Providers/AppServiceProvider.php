@@ -47,5 +47,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Contracts\SubMenuInterface',
             'App\Services\SubMenuService'
         );
+        $this->app->bind(
+            'App\Contracts\LanguageInterface',
+            'App\Services\LanguageService'
+        );
     }
 }

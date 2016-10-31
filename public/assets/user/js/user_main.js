@@ -26,7 +26,7 @@ $(document).ready(function(){
 	        });
 		}else{
 			$(this).attr('checked','checked');
-			$(this).attr('disabled', true)
+			//$(this).attr('disabled', true)
 			var final_url = url+auto;
 			var numb = '1';
 

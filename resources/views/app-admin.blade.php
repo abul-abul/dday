@@ -364,14 +364,14 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="">
+								<a href="{{action('AdminController@getLanguage')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Add languages
 								</a>
 							</li>
 
 							<li class="">
-								<a href="{{action('AdminController@getAddArticle')}}">
+								<a href="{{action('AdminController@getLanguageList')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									languages List
 								</a>

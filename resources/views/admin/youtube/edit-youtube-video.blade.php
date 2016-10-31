@@ -10,7 +10,7 @@
 	<div class="col-md-6">
 
 		{!! Form::open(['action' => ['AdminController@postAutoplay'] ,'class' => 'form-horizontal']) !!}
-			<input type="hidden" va;lue="{{$videos->id}}" name='id'>
+			<input name="video_id" type="hidden" value="{{$videos->id}}" >
 			<span class="col-md-12" style="margin-top:12px">
 				<label class="pull-right inline">
 					<small class="muted smaller-90">Width:</small>

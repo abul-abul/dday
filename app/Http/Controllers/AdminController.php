@@ -13,6 +13,7 @@ use App\Contracts\YoutubeInerface;
 use App\Contracts\GalleryInterface;
 use App\Contracts\PageInterface;
 use App\Contracts\SubMenuInterface;
+use App\Contracts\LanguageInterface;
 use View;
 use Session;
 use Validator;
@@ -449,18 +450,18 @@ class AdminController extends BaseController
     public function postAutoplay(request $request,YoutubeInerface $youtbeRepo)
     {
         $result = $request->all();
-        $id = $result['id'];
+        
 
         if(isset($result['width']) || isset($result['height'])){
             $data4 = [
                 'width' => $result['width'],
                 'height' => $result['height']
             ];
-            dd($data4);
-            $youtbeRepo->getUpdateYoutube($result['id'],$result);
+          
+            $youtbeRepo->getUpdateYoutube($result['video_id'],$data4);
             return redirect()->back();
         }
-
+        $id = $result['id'];
         if(isset($result['autoplay'])){
             if($result['autoplay'] == 1){
                 $data1 = [
@@ -519,11 +520,22 @@ class AdminController extends BaseController
      */
     public function getPageList(PageInterface $pageRepo)
     {
+        $dataArray = [
+            'page' => [],
+            'sub' => []
+        ];
         $result = $pageRepo->selectMenuSubmenu();
+
+        foreach ($result as $key => $value) {
+            array_push($dataArray['page'], $value->id);
+            array_push($dataArray['sub'],$value['menuSubMenu']);
+        }
+        $s = array_combine($dataArray['page'], $dataArray['sub']);
         $param = $pageRepo->getAll();
         $json = json_encode($pageRepo->getAll());
         $data = [
-            'pages' => $json
+            'pages' => $json,
+            'sub' => $result
         ];
         return view('admin.page.page-list',$data);
     }
@@ -573,4 +585,59 @@ class AdminController extends BaseController
         return redirect()->back()->with('error','You add Sub menu');
     }
 
+    /**
+     * 
+     */
+    public function postJgrid(request $request)
+    {
+        dd($token);
+    }
+
+    /**
+     * 
+     */
+    public function getLanguage()
+    {
+        
+        return view('admin.language.language');
+    }
+
+    /**
+     * 
+     */
+    public function postAddLanguage(request $request,LanguageInterface $langRepo)
+    {
+        $result = $request->all();
+        $validator = Validator::make($result, [
+            'lang_name' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }else{
+            unset($result['_token']);
+            $langRepo->createLang($result);
+        }
+        return redirect()->action('AdminController@getLanguageList');
+    }
+
+    /**
+     * 
+     */
+    public function getLanguageList(LanguageInterface $langRepo)
+    {
+        $result = $langRepo->getAll();
+        $data = [
+            'languages' => $result
+        ];
+        return view('admin.language.language-list',$data);
+    }
+
+    /**
+     * 
+     */
+    public function getDeleteLanguage($id,LanguageInterface $langRepo)
+    {
+        $langRepo->deleteLanguage($id);
+        return redirect()->back()->with('error','language deleted');
+    }
 }
