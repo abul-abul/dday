@@ -70,10 +70,10 @@
 
 												<div class="tools">
 													<a href="#">
-														<i class="ace-icon fa fa-link"></i>
+														<i data-id='{{$image->id}}' content="{{ csrf_token() }}" data-toggle="modal" data-target="#myModal1" class="ace-icon fa fa-link resize_icon"></i>
 													</a>
 
-													<a href="#">
+													<a href="{{action('AdminController@getCropImage',$image->id)}}">
 														<i class="ace-icon fa fa-paperclip"></i>
 													</a>
 
@@ -110,6 +110,25 @@
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+ 			</div>
+
+ 			<div class="modal fade" id="myModal1" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        
+			        <div class="modal-body">
+			        	<h1>Resize your image</h1>
+			        	<input style="margin-bottom:12px;" type="number" class="form-control gal_image_width" placeholder="width">
+			        	<input type="number" class="form-control gal_image_height" placeholder="height">
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default resize_image" >Save</button>
 			        </div>
 			      </div>
 			      

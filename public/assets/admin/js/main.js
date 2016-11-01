@@ -112,6 +112,66 @@ $(document).ready(function(){
             }
         });
     })
+
+    $('.crop_image_button').click(function(){
+        $('.get_data').trigger('click');
+        var token = $('.get_data').attr('content');
+        var get_data = $('#putData').val();
+        var image = $('#image').attr('src');
+        var id = $(this).attr('data-id');
+        console.log(id)
+        $.ajax({
+            url: '/ab-admin/crop-image',
+            type: 'post',
+            data: {_token:token,data_crop:get_data,data:image},
+            success: function(data)
+            {   
+                var image_name = data.image_name;
+                $.ajax({
+                    url: '/ab-admin/crop-image-update',
+                    type: 'post',
+                    data: {_token:token,id:id,image_name:image_name},
+                    success : function(data){
+                        location.reload()
+                    }
+                })
+            }
+        });
+    })
+
+
+    $('.resize_icon').click(function(event){
+        window.resize_id = $(this).attr('data-id');
+        window.token = $(this).attr('content');
+        // files = event.target.files;
+        // console.log(files)
+        // event.stopPropagation(); 
+        // event.preventDefault();
+        // var data = new FormData();
+        //var token = $('.gallery_image_modal_edit').attr('content');
+       // data.append('file', files[0]);
+        //data.append('_token',token);
+        //data.append('id',edit_id);
+    })
+
+    $('.resize_image').click(function(){
+        var width = $('.gal_image_width').val();
+        var height = $('.gal_image_height').val();
+        if(width == '' && height == '')
+        {
+            alert('error')
+        }else{
+            $.ajax({
+                url: '/ab-admin/resize-image',
+                type: 'post',
+                data: {_token:token,id:resize_id,height:height,width:width},
+                success : function(data){
+                    location.reload();
+                }   
+            }) 
+        }
+        
+    })
     //===========End Gallery
 
 

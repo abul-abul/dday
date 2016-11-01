@@ -67,6 +67,10 @@ Route::get('ab-admin/add-gallery','AdminController@getAddGallery');
 Route::post('ab-admin/add-gallery','AdminController@postAddGallery'); 
 Route::get('ab-admin/delete-gallery/{id}','AdminController@getDeleteGallery'); 
 Route::post('ab-admin/gallery-image-edit','AdminController@posteditGalleryImages'); 
+Route::get('ab-admin/crop-image/{id}','AdminController@getCropImage'); 
+Route::post('ab-admin/crop-image','AdminController@postCropImages'); 
+Route::post('ab-admin/crop-image-update','AdminController@postUpdeCropImage'); 
+Route::post('ab-admin/resize-image','AdminController@postResizeimage'); 
 
 Route::get('ab-admin/add-page','AdminController@getAddPage'); 
 Route::get('ab-admin/page-list','AdminController@getPageList'); 
@@ -79,4 +83,6 @@ Route::get('ab-admin/language','AdminController@getLanguage');
 Route::post('ab-admin/add-language','AdminController@postAddLanguage');
 Route::get('ab-admin/language-list','AdminController@getLanguageList');
 Route::get('ab-admin/language-delete/{id}','AdminController@getDeleteLanguage');
+
+
 

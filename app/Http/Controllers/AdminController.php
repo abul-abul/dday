@@ -20,6 +20,7 @@ use Validator;
 use Auth;
 use File;
 use Cookie;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends BaseController
 {
@@ -640,4 +641,102 @@ class AdminController extends BaseController
         $langRepo->deleteLanguage($id);
         return redirect()->back()->with('error','language deleted');
     }
+
+    /**
+     * 
+     */
+    public function getCropImage($id,GalleryInterface $galleryRepo)
+    {
+        $result = $galleryRepo->getOne($id);
+        $data = [
+            'gallerys'=>$result
+        ];
+        return view('admin.gallery.gallery-crop',$data);
+    }
+
+    /**
+     * 
+     */
+    public function postCropImages(Request $request)
+    {
+        $result = $request->all();
+        $data_crop = $result['data_crop'];
+        $crop_image =  json_decode($data_crop);
+        if($crop_image != '')
+        {
+            $imag = explode('/',$request->get('data'));
+            $imag = end($imag);
+            $name = str_random();
+            $format = explode('.', $imag);
+            $format = end($format);
+
+            $name = $name.'.'.$format;
+            $path = public_path().'/assets/admin/images/gallery_uploade/';
+            $newPath = public_path().'/assets/admin/images/gallery_uploade/';
+            $img = Image::make($path.$imag);
+
+            //dd($crop_image->width);
+            $width = round($crop_image->width);
+            $height = round($crop_image->height);
+
+            $x = round($crop_image->x);
+            $y = round($crop_image->y);
+
+            if($width == 0){
+                $width = 1;
+            }
+            if($height == 0)
+            {
+                $height = 1;
+            }
+            $img->crop($width, $height, $x, $y);
+            $img->save($newPath.$name);
+            $data['image_name'] = $name;
+            return response()->json($data);
+        }
+ 
+    }
+
+    /**
+     * 
+     */
+    public function postUpdeCropImage(Request $request,GalleryInterface $galleryRepo)
+    {
+        $result = $request->all();
+        unset($result['_token']);
+        $img = $result['image_name'];
+        $id = $result['id'];
+        $data = [
+            'image_name' => $img
+        ];
+        $galleryRepo->updateImagesGallery($id,$data);
+        return response()->json($data);
+    }
+
+    /**
+     * 
+     */
+    public function postResizeimage(request $request,GalleryInterface $galleryRepo)
+    {
+        $id = $request->get('id');
+        $width = $request->get('width');
+        $height = $request->get('height');
+        $resullt = $galleryRepo->getOne($id);
+        $image = $resullt->image_name;
+        $imag = explode('/', $image);
+        $imag = end($imag);
+
+        $name = str_random();
+        $format = explode('.', $imag);
+        $format = end($format);
+
+        $name = $name.'.'.$format;
+        $path = public_path().'/assets/admin/images/gallery_uploade/';
+
+        $img = Image::make($path.$imag);
+        $img->resize($width, $height);
+        $img->save($path.$imag);
+        return response()->json($name);
+    }
+
 }
