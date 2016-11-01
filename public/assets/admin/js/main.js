@@ -157,6 +157,8 @@ $(document).ready(function(){
     $('.resize_image').click(function(){
         var width = $('.gal_image_width').val();
         var height = $('.gal_image_height').val();
+        $(this).attr('disabled', 'disabled');
+
         if(width == '' && height == '')
         {
             alert('error')
@@ -167,6 +169,7 @@ $(document).ready(function(){
                 data: {_token:token,id:resize_id,height:height,width:width},
                 success : function(data){
                     location.reload();
+
                 }   
             }) 
         }
