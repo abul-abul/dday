@@ -124,6 +124,7 @@
 			        
 			        <div class="modal-body">
 			        	<h1>Resize your image</h1>
+			        	<img class="img_loading1" style="display: none;position: absolute;top: 41%;left: 41%;" src="/assets/admin/images/ajax-loader.gif">
 			        	<input style="margin-bottom:12px;" type="number" class="form-control gal_image_width" placeholder="width">
 			        	<input type="number" class="form-control gal_image_height" placeholder="height">
 			        </div>

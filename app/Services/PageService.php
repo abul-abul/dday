@@ -62,6 +62,17 @@ class PageService implements PageInterface
     {
         return $this->page->with('menuSubMenu')->get();
     }
+
+    /**
+     * Delete page
+     *
+     * @param
+     * @return page
+     */
+    public function deletePage($id)
+    {
+         return $this->getOne($id)->delete();
+    }
     
  
 

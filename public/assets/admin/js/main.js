@@ -119,7 +119,6 @@ $(document).ready(function(){
         var get_data = $('#putData').val();
         var image = $('#image').attr('src');
         var id = $(this).attr('data-id');
-        console.log(id)
         $.ajax({
             url: '/ab-admin/crop-image',
             type: 'post',
@@ -143,15 +142,6 @@ $(document).ready(function(){
     $('.resize_icon').click(function(event){
         window.resize_id = $(this).attr('data-id');
         window.token = $(this).attr('content');
-        // files = event.target.files;
-        // console.log(files)
-        // event.stopPropagation(); 
-        // event.preventDefault();
-        // var data = new FormData();
-        //var token = $('.gallery_image_modal_edit').attr('content');
-       // data.append('file', files[0]);
-        //data.append('_token',token);
-        //data.append('id',edit_id);
     })
 
     $('.resize_image').click(function(){
@@ -167,6 +157,9 @@ $(document).ready(function(){
                 url: '/ab-admin/resize-image',
                 type: 'post',
                 data: {_token:token,id:resize_id,height:height,width:width},
+                beforeSend: function() {
+                   $('.img_loading1').css('display','block');
+                },
                 success : function(data){
                     location.reload();
 
@@ -178,8 +171,20 @@ $(document).ready(function(){
     //===========End Gallery
 
 
-    
-
+    //============Page 
+    $('.page_plus').click(function(){
+        $(this).parent().next().children().fadeIn(100)
+        $(this).fadeOut(100,function(){
+            $(this).next().css('display','block')
+        })
+    })
+    $('.page_minus').click(function(){
+        $(this).parent().next().children().fadeOut(100)
+        $(this).fadeOut(100,function(){
+            $(this).prev().css('display','block')
+        })
+    })
+    //============end page
 
 })
 

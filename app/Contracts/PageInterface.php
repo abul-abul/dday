@@ -39,4 +39,12 @@ interface PageInterface
      */
     public function selectMenuSubmenu();
 
+    /**
+     * Delete page
+     *
+     * @param
+     * @return page
+     */
+    public function deletePage($id);
+
 }

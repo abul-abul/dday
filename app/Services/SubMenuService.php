@@ -52,7 +52,13 @@ class SubMenuService implements SubMenuInterface
         return $this->sub_menu->find($id);
     }
 
-    
+    /**
+     * 
+     */
+    public function deleteSubmenu($id)
+    {
+        return $this->getOne($id)->delete();
+    }
  
 
 }

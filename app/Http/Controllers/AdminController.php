@@ -531,12 +531,13 @@ class AdminController extends BaseController
             array_push($dataArray['page'], $value->id);
             array_push($dataArray['sub'],$value['menuSubMenu']);
         }
-        $s = array_combine($dataArray['page'], $dataArray['sub']);
+        // $s = array_combine($dataArray['page'], $dataArray['sub']);
+        // dd($s);
         $param = $pageRepo->getAll();
-        $json = json_encode($pageRepo->getAll());
+       // $json = json_encode($pageRepo->getAll());
         $data = [
-            'pages' => $json,
-            'sub' => $result
+            //'pages' => $param,
+            'pages' => $result
         ];
         return view('admin.page.page-list',$data);
     }
@@ -586,20 +587,23 @@ class AdminController extends BaseController
         return redirect()->back()->with('error','You add Sub menu');
     }
 
+   
     /**
      * 
      */
-    public function postJgrid(request $request)
+    public function getDeletePage($id,PageInterface $pageRepo)
     {
-        dd($token);
-    }
+        $pageObj = $pageRepo->selectMenuSubmenu();
+        dd($pageObj);
+        //$pageRepo->deletePage($id);
+        //$pageObj->menuSubMenu()->detach($id);
+    }   
 
     /**
      * 
      */
     public function getLanguage()
     {
-        
         return view('admin.language.language');
     }
 
@@ -738,5 +742,7 @@ class AdminController extends BaseController
         $img->save($path.$imag);
         return response()->json($name);
     }
+
+
 
 }
