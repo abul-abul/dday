@@ -49,6 +49,7 @@
 				</thead>
 				<tbody>
 					@foreach($pages as $page)
+
 					<tr>
 						<td>
 				            <span class="row_page">
@@ -56,41 +57,40 @@
 				            	<i  class="glyphicon glyphicon-minus page_minus"></i>
 				            </span>
 				            <div class="page_table_parennt_div">
-			                <table class="sub_table able table-striped table-bordered table-hover">
-				                 <tr>
-				                   <th>N</th>
-				                   <!-- <th></th> -->
-				                   <th>Sub Menu Name</th>
-				                   <th>Edit/delete</th>
-				                 </tr>
-				                 @foreach($page['menuSubMenu'] as $key => $submenu)
-					                   <tr>
-						                    <td>
-						                      {{$submenu->id}}
-						                    </td>
-						                     <!-- <td style="display:block;margin: 0 23px 0 16px">
-						                       <span class="glyphicon glyphicon-ok sub_ok" data-id='{{$submenu->id}}'></span>
-						                       <span style="color:#478FCA" class="glyphicon glyphicon-pencil sub_edit" data-id='{{$submenu->id}}'></span>
-						                       <span style="color:#DD5A43" class="glyphicon glyphicon-trash sub_delete" data-id='{{$submenu->id}}'></span>
-						                     </td> -->
-						                     <td class="sub_menu_block">
-						                     <!--   <input type="text" value="{{$submenu->sub_menu}}" class="edit_input">   -->          
-						                       <span class="edit_text">{{$submenu->sub_menu}}</span>
-						                     </td>
-						                     <td>
-						                     	<div class="hidden-sm hidden-xs action-buttons">
-													<a class="green" href="#">
-														<i class="ace-icon fa fa-pencil bigger-130"></i>
-													</a>
-
-													<a class="red" href="#">
-														<i class="ace-icon fa fa-trash-o bigger-130"></i>
-													</a>
-												</div>
-						                     </td>
-					                   </tr>
-				                 @endforeach 
-			                </table>
+				                <table class="sub_table able table-striped table-bordered table-hover">
+					                 <tr>
+					                   <th>N</th>
+					                   <!-- <th></th> -->
+					                   <th>Sub Menu Name</th>
+					                   <th>Edit/delete</th>
+					                 </tr>
+					                 @foreach($page['menuSubMenu'] as $key => $submenu)
+						                   <tr>
+							                    <td>
+							                      {{$submenu->id}}
+							                    </td>
+							                     <!-- <td style="display:block;margin: 0 23px 0 16px">
+							                       <span class="glyphicon glyphicon-ok sub_ok" data-id='{{$submenu->id}}'></span>
+							                       <span style="color:#478FCA" class="glyphicon glyphicon-pencil sub_edit" data-id='{{$submenu->id}}'></span>
+							                       <span style="color:#DD5A43" class="glyphicon glyphicon-trash sub_delete" data-id='{{$submenu->id}}'></span>
+							                     </td> -->
+							                     <td class="sub_menu_block">
+							                     <!--   <input type="text" value="{{$submenu->sub_menu}}" class="edit_input">   -->          
+							                       <span class="edit_text">{{$submenu->sub_menu}}</span>
+							                     </td>
+							                     <td>
+							                     	<div class="hidden-sm hidden-xs action-buttons">
+														<a class="green" href="#">
+															<i class="ace-icon fa fa-pencil bigger-130"></i>
+														</a>
+														<a class="red" href="#">
+															<i class="ace-icon fa fa-trash-o bigger-130"></i>
+														</a>
+													</div>
+							                     </td>
+						                   </tr>
+					                 @endforeach 
+				                </table>
 			                </div>    
 				        </td>
 						<!-- <td>

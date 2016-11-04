@@ -28,6 +28,7 @@ Route::get('user/twitter-callback','UsersController@getTwitterCallback');
 
 Route::get('user/google-login','UsersController@getGoogleLogin');
 Route::get('user/google-callback','UsersController@getGoogleCallback');
+Route::post('user/add-message','UsersController@postAddMessage');
 //=================End
 
 //================ end user

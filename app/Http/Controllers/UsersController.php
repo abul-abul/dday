@@ -25,10 +25,22 @@ class UsersController extends BaseController
      */
 	public function __construct(LanguageInterface $langRepo)
     {
-        parent::__construct($langRepo);
-        // $this->middleware('auth', ['except' => ['getLogin', 'postLogin','getLogout']]);
-        $this->middleware('language');
+        //parent::__construct($langRepo);
+       // $this->middleware('auth', ['except' => ['getLogin', 'postLogin','getLogout']]);
+      //  $this->middleware('language');
 
+    }
+
+    public function postAddMessage(request $request)
+    {
+        $user = \App\User::first();
+        $message = \App\ChatMessage::create([
+            'user_id' => $user->id,
+            'message' => $request->get('message')
+        ]);
+
+        event(new \App\Events\ChatMessageWasReceived($message, $user));
+        return response()->json();
     }
 
     /**
@@ -36,6 +48,10 @@ class UsersController extends BaseController
      */
     public function getHome()
     {
+       //Event::fire("ChatMessageWasReceived",array($user->name)) 
+        // \Event::listen("ChatMessageWasReceived", function(){
+        //     echo "You have listened to one event!";
+        // });
         return view('user.home');
     }
 

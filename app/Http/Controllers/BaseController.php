@@ -16,14 +16,16 @@ class BaseController extends Controller
 
     public function __construct($langRepo)
     {
-        $this->language = config('app.locale');
+        //$this->language = config('app.locale');
         $lang = $langRepo->getAll();
 
         $this->currentPathWithoutLocale = substr( implode(\Request::segments(), '/'), 3);
+
         $data = [
            'languages' => $lang,
            'currentPathWithoutLocale' => $this->currentPathWithoutLocale,
         ];
+
         view()->share($data);
     }
 

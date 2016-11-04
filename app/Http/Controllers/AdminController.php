@@ -698,7 +698,6 @@ class AdminController extends BaseController
             $data['image_name'] = $name;
             return response()->json($data);
         }
- 
     }
 
     /**

@@ -1,6 +1,8 @@
 <html>
 <head>
 	<title></title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 	{!! HTML::style( asset('assets/admin/plugins/css/bootstrap.css')) !!}
 	{!! HTML::style( asset('assets/admin/plugins/css/font-awesome.css')) !!}
 	{!! HTML::style( asset('assets/admin/plugins/css/ace-fonts.css')) !!}
@@ -58,8 +60,13 @@
 	
 	{!! HTML::style( asset('assets/admin/plugins/css/ace.onpage-help.css')) !!}
 	{!! HTML::style( asset('assets/admin/plugins/css/sunburst.css')) !!}
+	{!! HTML::style( asset('assets/admin/plugins/css/sunburst.css')) !!}
 
 	<script type="text/javascript"> ace.vars['base'] = '..'; </script>
+	
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	{!! HTML::script( asset('js/app.js') ) !!} 
+
 
 
 

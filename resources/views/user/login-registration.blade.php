@@ -1,5 +1,6 @@
 @extends('app-user')
 @section('user-content')
+
 <div class="main-container">
 			<div class="main-content">
 				<div class="row">
@@ -155,7 +156,6 @@
 
 
 
-
 @endsection
 
 
@@ -163,6 +163,9 @@
 
 	@section('script')
 	{!! HTML::script( asset('assets/user/js/user_main.js') ) !!} 
+
+
+
 
 		<script type="text/javascript">
 			jQuery(function($) {
