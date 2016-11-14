@@ -30,9 +30,9 @@ class AdminController extends BaseController
      *
      * @return void
      */
-	public function __construct()
+	public function __construct(LanguageInterface $langRepo)
     {
-        //parent::__construct();
+        parent::__construct($langRepo);
         $this->middleware('authadmin', ['except' => ['getLogin', 'postLogin','getLogout']]);
     }
 
@@ -742,6 +742,7 @@ class AdminController extends BaseController
         return response()->json($name);
     }
 
+    
 
 
 }

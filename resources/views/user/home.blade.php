@@ -1,16 +1,29 @@
 @extends('app-user')
 @section('user-content')
 
+@foreach($languages as $language)
+<a href="{{URL::to('/' .$language->lang_name. '/' . $currentPathWithoutLocale) }}" class="active load">{{$language->lang_name}}</a>
 
+@endforeach 
+<!-- <br>
+<br>
+<br>
 <a href="{{action('UsersController@getLoginReg')}}">Login</a>
 
+<br>
+<br>
+<br>
 
 			<textarea content="{{ csrf_token() }}" class="text" name="message"></textarea>
-			<button class="s" type="button">submit</button>
+			<br>
+			<br>
+
+			<button class="s" type="button">submit</button> -->
 
 
+<!-- 
+<span class="number"></span> -->
 
-<span class="number"></span>
 
 
 
@@ -20,19 +33,19 @@
 	{!! HTML::script(asset('assets/user/js/user_main.js') ) !!} 
 
 <!--  -->
-<script type="text/javascript">
-		$('.s').click(function(){
-			var text = $('.text').val()
-			var token = $('.text').attr('content')
-			 $.ajax({
-                url: '/user/add-message',
-                type: 'post',
-                data: {_token:token,message:text},
-                success : function(data){
-                   // location.reload();
-                }   
-            }) 
-		})
+	<script type="text/javascript">
+		// $('.s').click(function(){
+		// 	var text = $('.text').val()
+		// 	var token = $('.text').attr('content')
+		// 	 $.ajax({
+  //               url: 'en/user/add-message',
+  //               type: 'post',
+  //               data: {_token:token,message:text},
+  //               success : function(data){
+  //                  // location.reload();
+  //               }   
+  //           }) 
+		// })
 	</script>
 
 	<script type="text/javascript">

@@ -14,7 +14,7 @@
 
 //================user
 //=================Login
-Route::get('/','UsersController@getHome');
+Route::get('/','UsersController@getStartAngular');
 Route::get('user/login-registration','UsersController@getLoginReg');
 Route::post('user/registration','UsersController@postRegistration');
 Route::post('user/login','UsersController@postLogin');
@@ -29,11 +29,16 @@ Route::get('user/twitter-callback','UsersController@getTwitterCallback');
 Route::get('user/google-login','UsersController@getGoogleLogin');
 Route::get('user/google-callback','UsersController@getGoogleCallback');
 Route::post('user/add-message','UsersController@postAddMessage');
+
+Route::get('video','UsersController@getVideo');
 //=================End
 
 //================ end user
 
 
+Route::get('paypal','PaymentController@getPayPal');
+Route::get('paypal/response','PaymentController@getPaypalReturnResponse');
+Route::get('paypal/response/cancel','PaymentController@getPaypalCancelResponse');
 
 
 

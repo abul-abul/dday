@@ -85,20 +85,21 @@ class RouteServiceProvider extends ServiceProvider
 
     public function map(Router $router, Request $request)
     {
-        // if ($request->segment(1) != 'ab-admin') {
-        //     $locale = $request->segment(1);
+        if ($request->segment(1) != 'ab-admin') {
+            $locale = $request->segment(1);
 
-        //     $this->app->setLocale($locale);
+            $this->app->setLocale($locale);
 
-        //     $router->group(['namespace' => $this->namespace, 'middleware' => 'web','prefix' => $locale], function($router) {
-        //         require base_path('routes/web.php');
-        //     });
-        // }
-        // else {
+            $router->group(['namespace' => $this->namespace, 'middleware' => 'web','prefix' => $locale], function($router) {
+                require base_path('routes/web.php');
+            });
+            
+        }
+        else {
             $this->mapApiRoutes();
 
             $this->mapWebRoutes();
-        //}
+        }
     }
 
 

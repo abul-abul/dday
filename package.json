@@ -16,9 +16,12 @@
     "vue-resource": "^0.9.3"
   },
   "dependencies": {
+    "angular-ui-router": "^0.3.2",
     "laravel-echo": "^0.1.2",
     "laravel-echo-server": "^0.9.31",
     "laravel-elixir-compass": "git://github.com/rynocouse/laravel-elixir-compass.git",
-    "pusher-js": "^3.2.1"
+    "lodash": "^3.10.1",
+    "pusher-js": "^3.2.1",
+    "restangular": "^1.5.2"
   }
 }

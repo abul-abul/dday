@@ -196,5 +196,6 @@
 			</div><!-- /.widget-box -->
 		</div><!-- /.col -->
 	</div><!-- /.row -->
+
 @endsection
 

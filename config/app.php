@@ -183,7 +183,9 @@ return [
         
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        //'Anouar\Paypalpayment\PaypalpaymentServiceProvider',  
+        
 
         
     ],
@@ -237,6 +239,7 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Image' => Intervention\Image\Facades\Image::class,
+       // 'Paypalpayment'   => 'Anouar\Paypalpayment\Facades\PaypalPayment',
 
     ],
 
